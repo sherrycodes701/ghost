@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+<h1>Lessee account setup</h1>
+<p>How it works:</p>
+<br>
+<ul>
+  <li>You'll set up the lessee's account, with their name, email, username and property.</li>
+  <li>They'll receive an email, prompting them to set up a password.</li>
+  <li>Once they click the link and set up their password, their lessee account will be enabled!</li>
+</ul>
+
+{% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <p>{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <form action="{{ url_for('register_lessee') }}" method="POST" enctype = "multipart/form-data">
+
+
+        <table style="margin-left:auto;margin-right:auto;" class="body">
+            <tr>
+            <td><label>Name</label>
+            <input type = "text" name = "title"  required /></td>
+          </tr>
+            <tr>
+            <td><label>Email</label>
+            <input type = "email" name = "email"  required /></td>
+          </tr>
+            <tr>
+            <td><label>Username</label>
+            <input type = "text" name = "username"  required /></td>
+          </tr>
+
+
+            <tr>
+            <td>
+                <label for="house">Associated Property<br> <span><em>Displays only properties on standby.</em></span></label>
+            </td>
+            <td>
+              <select name="house" required>
+              {% for house in houses %}
+              <option value={{house.id}}>{{ house.title }}</option>
+              {% endfor %}
+
+            </select></td>
+            </tr>
+
+        </table>
+         <br>
+    <button type="submit" class="btn">Register</button>
+    </form>
+</body>
+</html>

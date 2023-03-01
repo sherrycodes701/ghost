@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+</head>
+<body>
+<h1 class="heading">Add House</h1>
+
+    <form action="{{ url_for('add') }}" method="POST" enctype = "multipart/form-data">
+
+
+        <table style="margin-left:auto;margin-right:auto;" class="body">
+            <tr>
+            <td><label> Name</label></td>
+            <td><input name="title" type="text" required></td>
+            </tr>
+            <tr>
+            <td><label>Address</label></td>
+            <td><textarea name="address" required></textarea></td>
+            </tr>
+
+            <tr>
+            <td><label>Description</label></td>
+            <td><textarea name="description" required></textarea></td>
+            </tr>
+
+            <tr>
+            <td><label>Price</label></td>
+            <td><input name="price" type="number" required></td>
+            </tr>
+            <tr>
+            <td><label>Upload Images</label>
+            <input type = "file" name = "file" accept="image/*" /></td>
+            </tr>
+
+            <tr>
+            <td>
+                <label for="type">House Type</label>
+            </td>
+            <td>
+              <select name="type" id="type">
+              <option value="Apartments">Apartments</option>
+              <option value="Bungalow/Villa">Bungalow/Villa</option>
+              <option value="Duplex/triplex">Duplex/triplex</option>
+              <option value="Penthouse">Penthouse</option>
+            </select></td>
+            </tr>
+            <tr>
+            <td><label>Size (in sqft)</label></td>
+            <td><input name="size" type="number" required></td>
+            </tr>
+            <tr>
+            <td><label>Legal Owner</label></td>
+            <td><input name="owner" type="text" required></td>
+            </tr>
+            <td><label>Maintenance Price</label></td>
+            <td><input name="mt-price" type="number" required></td>
+            </tr>
+
+            <tr>
+            <td>
+                <label for="bank">Bank Type</label>
+            </td>
+            <td>
+              <select name="bank" >
+              {% for bank in banks %}
+              <option value={{bank.id}}>{{ bank.title }} - {{ bank.branch }}</option>
+              {% endfor %}
+
+            </select></td>
+            </tr>
+
+
+        </table>
+        <br>
+        <p>Lessee/tenant will be set to standby.</p>
+        <br>
+        <button type="submit" class="btn">Add House</button>
+    </form>
+</body>
+</html>

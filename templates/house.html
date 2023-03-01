@@ -1,0 +1,57 @@
+
+{% include 'head.html' %}
+
+<div class="row" style="display: flex; height:100%">
+    <div class="column" style="height: 100%;flex:50%;max-width:50%;background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1)), url('/static/house_images/{{ house.id }}'); background-size: cover;">
+        <h1 style="position: absolute;bottom: 0;color:white;padding-left:10px">{{ house.title }}<br> </h1>
+
+        <p style="position: absolute;color:white;width:40%;word-wrap:break-word;padding-left:10px">{{ house.description }}</p>
+    </div>
+    <div class="column" style="height: 100%;flex:50%;padding-left:20px">
+        <table>
+            <tr>
+                <td><i class="fa-solid fa-location-dot"></i></td>
+                <td><p style="padding-left:5px;width:300px;word-wrap:break-word;">  {{ house.address }}</p></td>
+                <td><i class="fa-solid fa-users" style="padding-left:10px"></i></td>
+                <td><p style="padding-left:5px;"> <b>Renter: </b>{{ renter }}<br>
+                <b>Owner: </b>{{ owner }}<br>
+                <b>Legal Owner: </b>{{ house.owner }} </p></td>
+
+            </tr>
+            <tr>
+                <td><i class="fa-solid fa-money-bill-1-wave"></i></td>
+                <td><p style="padding-left:5px;width:300px"> <b>Price: </b>{{ house.price }}<br>
+                <b>Maintenance Price: </b>{{ house.mt_price }} </p></td>
+                <td><i class="fa-solid fa-house"></i></td>
+                <td><p style="padding-left:5px;"> <b>Type: </b>{{ house.type }}</p></td>
+            </tr>
+            <tr>
+                <td><i class="fa-solid fa-crop-simple"></i></td>
+                <td><p style="padding-left:5px;"><b>Size: </b>{{ house.size }} sqft</p></td>
+            </tr>
+
+        </table>
+        <br>
+        <table>
+            <tr><td><h3>Rental Agreements</h3></td></tr>
+
+            {% if agreements == 'No agreements found.' %}
+            <tr><td><h6>No agreements found.</h6></td></tr>
+            {% else %}
+                <tr>
+                <th>Time Period</th>
+                <th>File</th>
+
+                </tr>
+                {% for item1 in agreements%}
+                <tr><td>{{ item1 }}</td>
+                <td><i class="fa-solid fa-file-pdf"></i><a href="/static/agreements/{{ id }}/{{ item1 }}" target="_blank" style="padding-left:5px">Open</a></td>
+
+                {% endfor %}
+            {% endif %}
+        </table>
+
+    </div>
+</div>
+
+{% include 'footer.html' %}
